@@ -25,14 +25,14 @@ namespace EduHome.Controllers
         {
       
 
-            Speakers speakers =await  _context.Speakers.Include(e=>e.SpeakersEvents).
-                ThenInclude(se=>se.Events).FirstOrDefaultAsync(e=>e.Id == id && !e.IsDeleted);
+       Events events =await  _context.Speakers.Include(e=>e.SpeakersEvents).
+                ThenInclude(se=>se.Speakers).FirstOrDefaultAsync(e=>e.Id == id && !e.IsDeleted);
 
-            if (speakers == null)
+            if (events == null)
                 return NotFound();
 
 
-            return View(speakers);
+            return View(events);
         }
 
     }
